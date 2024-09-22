@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
+
 
 function SeatBooking() {
   const [seats, setSeats] = useState([]); // State to store seat data
@@ -13,21 +15,22 @@ function SeatBooking() {
 
   const fetchSeats = async () => {
     // Fetch the inditial seat data
-    const res = await axios.get('http://localhost:5000/api/seats');
+    const res = await axios.get('https://unstop-assigment.onrender.com/api/seats');
     setSeats(res.data);
   };
 
   const handleBooking = async () => {
     try {
       // Making API call to backend for book seats
-      const res = await axios.post('http://localhost:5000/api/book-seats', {
+      const res = await axios.post('https://unstop-assigment.onrender.com/api/book-seats', {
         numberOfSeats,
       });
-      alert(res.data.message)
+      // alert(res.data.message)
+      swal("Seat Booked sucessfully");
       fetchSeats(); // Refresh seat layout
     } catch (error) {
       
-      alert(error.response.data.message)
+      // alert(error.response.data.message)
     }
   };
 
