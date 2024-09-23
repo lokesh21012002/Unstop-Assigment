@@ -25,10 +25,14 @@ function SeatBooking() {
       const res = await axios.post('https://unstop-assigment.onrender.com/api/book-seats', {
         numberOfSeats,
       });
+      
+      
       // alert(res.data.message)
       swal("Seat Booked sucessfully");
       fetchSeats(); // Refresh seat layout
     } catch (error) {
+      swal(error.response.data.message);
+      
       
       // alert(error.response.data.message)
     }
